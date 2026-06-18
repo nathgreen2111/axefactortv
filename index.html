@@ -6,18 +6,18 @@
 <title>The Axe Factor — Reception</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Paytone+One&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --navy:#171f34;        /* brand background */
-    --navy-2:#1e2842;       /* raised panels */
-    --navy-3:#26314f;       /* borders / hover */
-    --teal:#45c3b2;         /* primary */
-    --teal-soft:#5fd6c6;    /* lighter teal for text on navy */
-    --yellow:#dfdf00;       /* accent */
-    --ink:#eef2f8;          /* main text */
-    --muted:#8893ad;        /* secondary text */
-    --good:#45c3b2;
+    --navy:#171f34;
+    --navy-2:#1e2842;
+    --navy-3:#26314f;
+    --teal:#45c3b2;
+    --teal-soft:#5fd6c6;
+    --teal-deep:#2f9e8f;
+    --yellow:#dfdf00;
+    --ink:#eef2f8;
+    --muted:#8893ad;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%;width:100%;overflow:hidden}
@@ -29,79 +29,114 @@
   }
   h1,h2,h3,.display{font-family:'Paytone One',sans-serif;font-weight:400;letter-spacing:.01em}
 
-  /* faint target motif bleeding off the right edge */
   .motif{
-    position:fixed;right:-12vh;top:50%;transform:translateY(-50%);
-    width:78vh;height:78vh;border-radius:50%;pointer-events:none;z-index:0;
+    position:fixed;right:-14vh;top:50%;transform:translateY(-50%);
+    width:84vh;height:84vh;border-radius:50%;pointer-events:none;z-index:0;
     background:
-      radial-gradient(circle, transparent 0 8%, var(--teal) 8% 13%, transparent 13% 22%,
-      var(--teal) 22% 27%, transparent 27% 38%, var(--teal) 38% 43%, transparent 43%);
+      radial-gradient(circle, transparent 0 8%, var(--teal) 8% 12.5%, transparent 12.5% 22%,
+      var(--teal) 22% 26.5%, transparent 26.5% 38%, var(--teal) 38% 42.5%, transparent 42.5%);
     opacity:.05;
   }
 
   .stage{position:relative;z-index:1;height:100vh;display:flex;flex-direction:column;padding:3.2vh 3.6vw 0}
 
-  /* ---- header ---- */
   header{display:flex;align-items:center;justify-content:space-between;flex:0 0 auto}
   .brand{display:flex;align-items:center;gap:1.6vw}
-  .brand img{height:9.5vh;width:auto;display:block}
+  .brand img{height:10vh;width:auto;display:block;filter:drop-shadow(0 0 2.4vh rgba(69,195,178,.35))}
   .brand .names{line-height:1}
-  .brand .names .top{font-family:'Paytone One',sans-serif;font-size:3.0vh;color:var(--ink)}
+  .brand .names .top{font-family:'Paytone One',sans-serif;font-size:3.2vh;color:var(--ink)}
   .brand .names .sub{font-size:1.5vh;color:var(--teal-soft);letter-spacing:.22em;text-transform:uppercase;margin-top:.7vh;font-weight:700}
 
   .clockwrap{text-align:right;line-height:1}
-  .clock{font-family:'Paytone One',sans-serif;font-size:5.2vh;color:var(--ink)}
+  .clock{font-family:'Paytone One',sans-serif;font-size:5.4vh;color:var(--ink)}
   .date{font-size:1.8vh;color:var(--muted);margin-top:.6vh;font-weight:600;letter-spacing:.04em}
   .livedot{display:inline-flex;align-items:center;gap:.6vw;margin-top:1vh;font-size:1.4vh;font-weight:700;letter-spacing:.14em;color:var(--teal-soft);text-transform:uppercase}
-  .livedot .dot{width:1.1vh;height:1.1vh;border-radius:50%;background:var(--teal);box-shadow:0 0 0 0 var(--teal);animation:pulse 2s infinite}
+  .livedot .dot{width:1.1vh;height:1.1vh;border-radius:50%;background:var(--teal);animation:pulse 2s infinite}
   .livedot.stale .dot{background:var(--yellow);animation:none}
   .livedot.stale{color:var(--yellow)}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(69,195,178,.6)}70%{box-shadow:0 0 0 1.4vh rgba(69,195,178,0)}100%{box-shadow:0 0 0 0 rgba(69,195,178,0)}}
 
-  /* ---- main grid ---- */
-  .main{flex:1 1 auto;display:grid;grid-template-columns:1.35fr 1fr;gap:3vw;align-items:stretch;padding:3.4vh 0}
+  .main{flex:1 1 auto;display:grid;grid-template-columns:1.25fr 1fr;gap:3vw;align-items:stretch;padding:3vh 0;min-height:0}
 
-  /* next session hero */
   .hero{
     background:linear-gradient(160deg,var(--navy-2),var(--navy));
     border:1px solid var(--navy-3);border-radius:2.4vh;
-    padding:4vh 3.2vw;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;
+    padding:4vh 3.2vw;display:flex;flex-direction:column;position:relative;overflow:hidden;
   }
   .hero::before{content:"";position:absolute;left:0;top:0;bottom:0;width:.8vh;background:var(--teal)}
   .eyebrow{font-size:1.7vh;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--teal-soft)}
   .hero .when{font-family:'Paytone One',sans-serif;font-size:11vh;line-height:.92;color:var(--ink);margin-top:1.4vh}
-  .hero .whenmeta{font-size:2.6vh;font-weight:700;color:var(--ink);margin-top:1.2vh}
-  .hero .spaces{display:inline-flex;align-items:baseline;gap:.6vw;margin-top:3vh;
-    background:var(--teal);color:var(--navy);font-weight:800;border-radius:1.2vh;padding:1.4vh 2vw;font-size:2.6vh}
-  .hero .spaces b{font-family:'Paytone One',sans-serif;font-size:3.4vh;font-weight:400}
-  .hero .soldout{margin-top:3vh;display:inline-block;background:var(--navy-3);color:var(--muted);font-weight:700;border-radius:1.2vh;padding:1.4vh 2vw;font-size:2.4vh}
-  .hero .cta{margin-top:auto;padding-top:3vh;font-size:2vh;color:var(--muted);font-weight:600}
-  .hero .cta b{color:var(--yellow)}
-  .herofill{display:flex;align-items:center;gap:1.8vw;margin-top:3.6vh}
-  .herofill svg{width:9vh;height:9vh;opacity:.9;flex:0 0 auto}
-  .herofill .venue{font-size:2.1vh;font-weight:700;color:var(--ink);line-height:1.4}
-  .herofill .venue span{font-size:1.7vh;font-weight:500;color:var(--muted)}
+  .hero .whenmeta{font-size:2.4vh;font-weight:700;color:var(--ink);margin-top:1.2vh}
+  .badgerow{display:flex;gap:1vw;flex-wrap:wrap;margin-top:3vh;align-items:center}
+  .hero .avail{display:inline-flex;align-items:baseline;gap:.6vw;
+    background:var(--teal);color:var(--navy);font-weight:800;border-radius:1.2vh;padding:1.4vh 2vw;font-size:2.4vh}
+  .hero .avail b{font-family:'Paytone One',sans-serif;font-size:3.2vh;font-weight:400}
+  .lanebadge{display:inline-flex;align-items:center;gap:.5vw;background:rgba(223,223,0,.16);border:1px solid rgba(223,223,0,.55);
+    color:var(--yellow);font-weight:800;border-radius:1.2vh;padding:1.4vh 1.6vw;font-size:2vh;letter-spacing:.02em}
+  .hero .soldout{margin-top:3vh;display:inline-block;background:var(--navy-3);color:var(--muted);font-weight:700;border-radius:1.2vh;padding:1.4vh 2vw;font-size:2.2vh}
+  .herofill{display:flex;align-items:center;gap:1.6vw;margin-top:auto;padding-top:3vh}
+  .herofill .tgt{width:8vh;height:8vh;flex:0 0 auto}
+  .herofill .venue{font-size:2vh;font-weight:700;color:var(--ink);line-height:1.4}
+  .herofill .venue span{font-size:1.6vh;font-weight:500;color:var(--muted)}
 
-  /* upcoming list */
-  .upcoming{display:flex;flex-direction:column}
-  .upcoming h3{font-size:1.9vh;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:2vh;font-family:'Inter',sans-serif}
-  .slots{display:flex;flex-direction:column;gap:1.4vh;flex:1 1 auto}
+  .rotor{position:relative;overflow:hidden;border-radius:2.4vh}
+  .panel{position:absolute;inset:0;display:flex;flex-direction:column;padding:0 .4vw;
+    opacity:0;transform:translateY(2vh);transition:opacity .6s ease,transform .6s ease;pointer-events:none}
+  .panel.active{opacity:1;transform:none}
+  .panel h3{font-size:1.9vh;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:2vh;font-family:'Inter',sans-serif}
+
+  .slots{display:flex;flex-direction:column;gap:1.3vh;flex:1 1 auto}
   .slot{display:flex;align-items:center;justify-content:space-between;
-    background:var(--navy-2);border:1px solid var(--navy-3);border-radius:1.4vh;padding:2.1vh 1.8vw}
-  .slot .t{font-family:'Paytone One',sans-serif;font-size:3.4vh;color:var(--ink);min-width:7vw}
-  .slot .d{font-size:1.6vh;color:var(--muted);font-weight:600;margin-top:.4vh}
+    background:var(--navy-2);border:1px solid var(--navy-3);border-radius:1.4vh;padding:1.9vh 1.6vw}
   .slot .left{display:flex;flex-direction:column}
-  .pill{font-size:1.7vh;font-weight:800;padding:.9vh 1.4vw;border-radius:.9vh;letter-spacing:.03em;white-space:nowrap}
-  .pill.open{background:rgba(69,195,178,.16);color:var(--teal-soft);border:1px solid rgba(69,195,178,.4)}
-  .pill.few{background:rgba(223,223,0,.14);color:var(--yellow);border:1px solid rgba(223,223,0,.4)}
+  .slot .t{font-family:'Paytone One',sans-serif;font-size:3.2vh;color:var(--ink)}
+  .slot .d{font-size:1.5vh;color:var(--muted);font-weight:600;margin-top:.3vh}
+  .slot .d .lane{color:var(--yellow);font-weight:800}
+  .pill{font-size:1.6vh;font-weight:800;padding:.9vh 1.3vw;border-radius:.9vh;letter-spacing:.02em;white-space:nowrap}
+  .pill.open{background:rgba(69,195,178,.16);color:var(--teal-soft);border:1px solid rgba(69,195,178,.45)}
+  .pill.few{background:rgba(223,223,0,.14);color:var(--yellow);border:1px solid rgba(223,223,0,.45)}
   .pill.full{background:var(--navy-3);color:var(--muted);border:1px solid var(--navy-3)}
-  .empty{flex:1 1 auto;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:2.2vh;text-align:center;font-weight:600;border:1px dashed var(--navy-3);border-radius:1.4vh}
+  .empty{flex:1 1 auto;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:2vh;text-align:center;font-weight:600;border:1px dashed var(--navy-3);border-radius:1.4vh;padding:2vh}
 
-  /* ---- ticker ---- */
+  .pricewrap{flex:1 1 auto;display:flex;flex-direction:column;gap:0}
+  .pricehead,.pricerow{display:grid;grid-template-columns:1.4fr 1fr 1fr;align-items:center}
+  .pricehead{padding:0 1.2vw 1.4vh;border-bottom:2px solid var(--navy-3)}
+  .pricehead span{font-family:'Paytone One',sans-serif;font-size:1.7vh;letter-spacing:.06em;text-transform:uppercase;color:var(--teal-soft)}
+  .pricehead span:nth-child(2),.pricehead span:nth-child(3){text-align:right}
+  .pricerow{padding:1.35vh 1.2vw;border-radius:1vh}
+  .pricerow:nth-child(even){background:var(--navy-2)}
+  .pricerow .who{display:flex;align-items:center;gap:.7vw}
+  .pricerow .who .n{font-family:'Paytone One',sans-serif;font-size:2.6vh;color:var(--ink);width:1.6vw}
+  .pricerow .who .icons{display:flex;gap:.18vw;color:var(--teal)}
+  .pricerow .who .icons svg{width:1.9vh;height:1.9vh}
+  .pricerow .pp{text-align:right;font-size:2.1vh;font-weight:700;color:var(--ink)}
+  .pricerow .pp em{font-style:normal;color:var(--muted);font-weight:600;font-size:1.5vh;margin-right:.3vw}
+  .pricerow .tot{text-align:right;font-size:2.1vh;font-weight:800;color:var(--teal-soft)}
+  .pricerow .tot em{font-style:normal;color:var(--muted);font-weight:600;font-size:1.5vh;margin-right:.3vw}
+  .pricenote{margin-top:1.6vh;font-size:1.5vh;color:var(--muted);font-weight:600;text-align:center}
+  .pricenote b{color:var(--yellow)}
+
+  .feature{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+    background:radial-gradient(120% 100% at 80% 20%, rgba(69,195,178,.14), transparent 60%);
+    border-radius:2vh;padding:2vh 0}
+  .feature .kick{font-size:1.8vh;font-weight:800;letter-spacing:.22em;text-transform:uppercase;color:var(--teal-soft)}
+  .feature .big{font-family:'Paytone One',sans-serif;font-size:7.4vh;line-height:.98;color:var(--ink);margin-top:1.4vh}
+  .feature .big em{font-style:normal;color:var(--teal)}
+  .feature .blurb{font-size:2.2vh;font-weight:600;color:var(--ink);margin-top:2.4vh;line-height:1.45;max-width:34vw}
+  .feature .blurb b{color:var(--yellow)}
+  .feature .chips{display:flex;gap:.8vw;flex-wrap:wrap;margin-top:3vh}
+  .feature .chip{background:var(--navy-2);border:1px solid var(--navy-3);border-radius:999px;
+    padding:1.1vh 1.5vw;font-size:1.7vh;font-weight:700;color:var(--ink)}
+  .feature .chip b{color:var(--teal-soft)}
+
+  .dots{position:absolute;bottom:1.4vh;right:.4vw;display:flex;gap:.7vw;z-index:2}
+  .dots i{width:1.1vh;height:1.1vh;border-radius:50%;background:var(--navy-3);transition:background .3s,width .3s}
+  .dots i.on{background:var(--teal);width:3vh;border-radius:999px}
+
   .ticker{flex:0 0 auto;background:var(--teal);color:var(--navy);overflow:hidden;white-space:nowrap;height:6.4vh;display:flex;align-items:center;margin:0 -3.6vw}
-  .ticker .track{display:inline-block;padding-left:100%;animation:scroll 38s linear infinite;font-weight:800;font-size:2.2vh;letter-spacing:.02em}
+  .ticker .track{display:inline-block;padding-left:100%;animation:scroll 36s linear infinite;font-weight:800;font-size:2.2vh;letter-spacing:.02em}
   .ticker .track span{margin:0 3vw}
-  .ticker .track .sep{color:var(--navy);opacity:.45}
+  .ticker .track .sep{opacity:.45}
   @keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
 
   .loading{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:var(--navy);z-index:5;font-size:2.4vh;color:var(--muted);font-weight:600}
@@ -109,6 +144,7 @@
   @media (prefers-reduced-motion: reduce){
     .ticker .track{animation:none}
     .livedot .dot{animation:none}
+    .panel{transition:none}
   }
 </style>
 </head>
@@ -133,26 +169,52 @@
     </header>
 
     <div class="main">
-      <section class="hero" id="hero">
-        <div class="eyebrow">Next available session</div>
+      <section class="hero">
+        <div class="eyebrow">Next available lane</div>
         <div class="when" id="heroWhen">—</div>
         <div class="whenmeta" id="heroMeta"></div>
-        <div id="heroSpaces"></div>
+        <div class="badgerow" id="heroBadges"></div>
         <div class="herofill">
-          <svg viewBox="0 0 100 100" aria-hidden="true">
+          <svg class="tgt" viewBox="0 0 100 100" aria-hidden="true">
             <circle cx="50" cy="50" r="46" fill="none" stroke="var(--teal)" stroke-width="3"/>
             <circle cx="50" cy="50" r="32" fill="none" stroke="var(--teal)" stroke-width="3"/>
             <circle cx="50" cy="50" r="18" fill="none" stroke="var(--teal)" stroke-width="3"/>
             <circle cx="50" cy="50" r="6" fill="var(--teal)"/>
           </svg>
-          <div class="venue">Darwin Centre · Middle Level · SY1 1BW<br><span>One hour · your own ChampThrow lane · up to 8 throwers</span></div>
+          <div class="venue">Darwin Centre · Middle Level · SY1 1BW<br><span>One hour · exclusive lane hire · up to 8 throwers</span></div>
         </div>
-        <div class="cta">Ask a team member to book — or grab a slot at <b>theaxefactor.co.uk</b></div>
       </section>
 
-      <section class="upcoming">
-        <h3>Coming up today</h3>
-        <div class="slots" id="slots"></div>
+      <section class="rotor">
+        <div class="panel active" data-panel="0">
+          <h3>Coming up today</h3>
+          <div class="slots" id="slots"></div>
+        </div>
+
+        <div class="panel" data-panel="1">
+          <h3>What it costs</h3>
+          <div class="pricewrap">
+            <div class="pricehead"><span>People</span><span>Per&nbsp;person</span><span>Total</span></div>
+            <div id="priceRows"></div>
+            <div class="pricenote">The whole lane is <b>exclusively yours</b> — more throwers, better value</div>
+          </div>
+        </div>
+
+        <div class="panel" data-panel="2">
+          <div class="feature">
+            <div class="kick">Interactive axe throwing</div>
+            <div class="big"><em>ChampThrow</em><br>Lanes</div>
+            <div class="blurb">Digital targets that <b>score every throw automatically</b> — over 15 games, instant reactions, no chalkboards.</div>
+            <div class="chips">
+              <span class="chip"><b>15+</b> games</span>
+              <span class="chip">Auto <b>scoring</b></span>
+              <span class="chip">Up to <b>8</b> players</span>
+              <span class="chip"><b>Café</b> onsite</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dots" id="dots"><i class="on"></i><i></i><i></i></div>
       </section>
     </div>
 
@@ -167,11 +229,9 @@ const fmtTime = new Intl.DateTimeFormat("en-GB",{timeZone:TZ,hour:"2-digit",minu
 const fmtDay  = new Intl.DateTimeFormat("en-GB",{timeZone:TZ,weekday:"long"});
 const fmtDate = new Intl.DateTimeFormat("en-GB",{timeZone:TZ,weekday:"long",day:"numeric",month:"long"});
 
-// Returns Y-M-D string in UK time for grouping "today"
 function ukDateKey(d){
   return new Intl.DateTimeFormat("en-CA",{timeZone:TZ,year:"numeric",month:"2-digit",day:"2-digit"}).format(d);
 }
-
 function tickClock(){
   const now=new Date();
   document.getElementById("clock").textContent=fmtTime.format(now);
@@ -188,6 +248,48 @@ function relativeDayLabel(d){
   return fmtDay.format(d);
 }
 
+const PERSON='<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="7" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8z"/></svg>';
+
+const PRICING=[
+  {n:2, pp:29, tot:58},
+  {n:3, pp:26, tot:78},
+  {n:4, pp:23, tot:92},
+  {n:5, pp:21, tot:105},
+  {n:6, pp:21, tot:126},
+  {n:7, pp:21, tot:147},
+  {n:8, pp:21, tot:168},
+];
+function renderPricing(){
+  const el=document.getElementById("priceRows");
+  el.innerHTML=PRICING.map(r=>{
+    const icons=PERSON.repeat(r.n);
+    return '<div class="pricerow"><div class="who"><span class="n">'+r.n+'</span>'+
+      '<span class="icons">'+icons+'</span></div>'+
+      '<div class="pp"><em>from</em>£'+r.pp.toFixed(2)+'</div>'+
+      '<div class="tot"><em>from</em>£'+r.tot+'</div></div>';
+  }).join("");
+}
+
+function groupByTime(events){
+  const map=new Map();
+  for(const e of events){
+    const key=e.start;
+    if(!map.has(key)) map.set(key,[]);
+    map.get(key).push(e);
+  }
+  const rows=[];
+  for(const [key,list] of map){
+    const startD=new Date(key);
+    const open=list.filter(x=>x.isOpen);
+    if(open.length===0) continue;
+    const lanes=open.length;
+    const available=open.reduce((s,x)=>s+x.available,0);
+    rows.push({startD, lanes, available});
+  }
+  rows.sort((a,b)=>a.startD-b.startD);
+  return rows;
+}
+
 function render(data){
   document.getElementById("loading").style.display="none";
 
@@ -197,68 +299,70 @@ function render(data){
 
   const now=new Date();
   const events=(data.events||[]).map(e=>({...e,startD:new Date(e.start)}));
+  const future=groupByTime(events.filter(e=>e.startD>now));
 
-  // Future, open (not blocked) sessions
-  const future=events.filter(e=>e.startD>now && e.isOpen);
-
-  // ---- HERO: next bookable session ----
-  const next=future.find(e=>e.available>0);
+  const next=future.find(r=>r.available>0);
   const heroWhen=document.getElementById("heroWhen");
   const heroMeta=document.getElementById("heroMeta");
-  const heroSpaces=document.getElementById("heroSpaces");
+  const heroBadges=document.getElementById("heroBadges");
 
   if(next){
     heroWhen.textContent=fmtTime.format(next.startD);
-    heroMeta.textContent=relativeDayLabel(next.startD)+" · 1 hour session";
-    const s=next.available;
-    heroSpaces.className="";
-    heroSpaces.innerHTML='<div class="spaces"><b>'+s+'</b> '+(s===1?'space left':'spaces left')+'</div>';
+    heroMeta.textContent=relativeDayLabel(next.startD)+" · 1 hour exclusive hire";
+    let html='<div class="avail"><b>'+next.available+'</b> '+(next.available===1?'space':'spaces')+' open</div>';
+    if(next.lanes>1){
+      html+='<div class="lanebadge">◆ '+next.lanes+' lanes free</div>';
+    }
+    heroBadges.innerHTML=html;
   } else {
-    // nothing bookable in the feed window
-    const nextBooked=future[0];
-    if(nextBooked){
-      heroWhen.textContent=fmtTime.format(nextBooked.startD);
-      heroMeta.textContent=relativeDayLabel(nextBooked.startD)+" · 1 hour session";
-      heroSpaces.innerHTML='<div class="soldout">Fully booked — ask about cancellations</div>';
+    const nb=future[0];
+    if(nb){
+      heroWhen.textContent=fmtTime.format(nb.startD);
+      heroMeta.textContent=relativeDayLabel(nb.startD)+" · 1 hour exclusive hire";
+      heroBadges.innerHTML='<div class="soldout">Fully booked — ask about cancellations</div>';
     } else {
       heroWhen.textContent="—";
       heroMeta.textContent="No sessions scheduled";
-      heroSpaces.innerHTML='<div class="soldout">Ask a team member for availability</div>';
+      heroBadges.innerHTML='<div class="soldout">Ask a team member for availability</div>';
     }
   }
 
-  // ---- UPCOMING: next several open sessions ----
   const slotsEl=document.getElementById("slots");
-  slotsEl.innerHTML="";
   const list=future.slice(0,5);
   if(list.length===0){
     slotsEl.innerHTML='<div class="empty">No more sessions in the schedule right now —<br>speak to a team member to get throwing.</div>';
   } else {
-    for(const e of list){
+    slotsEl.innerHTML=list.map(r=>{
       let pillCls="full",pillTxt="Fully booked";
-      if(e.available>2){pillCls="open";pillTxt=e.available+" spaces";}
-      else if(e.available>0){pillCls="few";pillTxt=e.available+" left";}
-      const row=document.createElement("div");
-      row.className="slot";
-      row.innerHTML=
-        '<div class="left"><span class="t">'+fmtTime.format(e.startD)+'</span>'+
-        '<span class="d">'+relativeDayLabel(e.startD)+'</span></div>'+
-        '<span class="pill '+pillCls+'">'+pillTxt+'</span>';
-      slotsEl.appendChild(row);
-    }
+      if(r.available>2){pillCls="open";pillTxt=r.available+" spaces";}
+      else if(r.available>0){pillCls="few";pillTxt=r.available+" left";}
+      const laneTxt = r.lanes>1 ? '<span class="lane">'+r.lanes+' lanes</span> · ' : '';
+      return '<div class="slot"><div class="left"><span class="t">'+fmtTime.format(r.startD)+'</span>'+
+        '<span class="d">'+laneTxt+relativeDayLabel(r.startD)+'</span></div>'+
+        '<span class="pill '+pillCls+'">'+pillTxt+'</span></div>';
+    }).join("");
   }
 
-  // ---- TICKER ----
   const tk=document.getElementById("ticker");
   const lines=[
     "WELCOME TO THE AXE FACTOR",
-    "WALK-INS WELCOME — SUBJECT TO AVAILABILITY",
-    "YOUR OWN CHAMPTHROW LANE · UP TO 8 THROWERS · OVER 15 DIGITAL GAMES",
+    "EXCLUSIVE LANE HIRE — YOUR GROUP HAS THE LANE TO YOURSELVES",
+    "INTERACTIVE CHAMPTHROW LANES · OVER 15 DIGITAL GAMES · AUTO SCORING",
     "BIRTHDAYS · STAG & HEN · TEAM BUILDING — ASK A TEAM MEMBER",
-    "CAFÉ ONSITE · CLOSED-TOE SHOES REQUIRED · OVER 8s WELCOME",
+    "WALK-INS WELCOME · CAFÉ ONSITE · OVER 8s · CLOSED-TOE SHOES REQUIRED",
     "BOOK ONLINE AT THEAXEFACTOR.CO.UK"
   ];
   tk.innerHTML=lines.map(l=>'<span>'+l+'</span>').join('<span class="sep">◆</span>');
+}
+
+let panelIdx=0;
+const PANEL_MS=12000;
+function rotatePanels(){
+  const panels=document.querySelectorAll(".panel");
+  const dots=document.querySelectorAll(".dots i");
+  panelIdx=(panelIdx+1)%panels.length;
+  panels.forEach((p,i)=>p.classList.toggle("active",i===panelIdx));
+  dots.forEach((d,i)=>d.classList.toggle("on",i===panelIdx));
 }
 
 async function load(){
@@ -271,18 +375,21 @@ async function load(){
     console.error(err);
   }
 }
-load();
-setInterval(load,2*60*1000); // refresh every 2 minutes
 
-// preview helper: ?demo=1 injects fake data without the API
+renderPricing();
+load();
+setInterval(load,2*60*1000);
+setInterval(rotatePanels,PANEL_MS);
+
 if(new URLSearchParams(location.search).get("demo")==="1"){
   const base=Date.now();
   render({events:[
     {start:new Date(base+25*60000).toISOString(),available:6,blocked:0,isOpen:true},
-    {start:new Date(base+85*60000).toISOString(),available:0,blocked:0,isOpen:true},
+    {start:new Date(base+85*60000).toISOString(),available:4,blocked:0,isOpen:true},
+    {start:new Date(base+85*60000).toISOString(),available:6,blocked:0,isOpen:true},
     {start:new Date(base+145*60000).toISOString(),available:2,blocked:0,isOpen:true},
-    {start:new Date(base+205*60000).toISOString(),available:8,blocked:0,isOpen:true},
-    {start:new Date(base+265*60000).toISOString(),available:4,blocked:0,isOpen:true}
+    {start:new Date(base+205*60000).toISOString(),available:0,blocked:0,isOpen:true},
+    {start:new Date(base+265*60000).toISOString(),available:8,blocked:0,isOpen:true}
   ]});
 }
 </script>
