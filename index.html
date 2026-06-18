@@ -65,7 +65,13 @@
   }
   .hero::before{content:"";position:absolute;left:0;top:0;bottom:0;width:.8vh;background:var(--teal)}
   .eyebrow{font-size:1.7vh;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:var(--teal-soft)}
-  .hero .when{font-family:'Paytone One',sans-serif;font-size:11vh;line-height:.92;color:var(--ink);margin-top:1.4vh}
+  .hero .when{font-family:'Paytone One',sans-serif;font-size:11vh;line-height:.92;color:var(--ink);margin-top:1.4vh;transition:color .4s}
+  .hero.soon .when{color:var(--teal-soft)}
+  .hero.soon::before{background:var(--yellow);animation:edgeglow 1.6s ease-in-out infinite}
+  @keyframes edgeglow{0%,100%{box-shadow:0 0 1.2vh .2vh rgba(223,223,0,.5)}50%{box-shadow:0 0 2.8vh .6vh rgba(223,223,0,.9)}}
+  .nowflag{display:inline-flex;align-items:center;gap:.5vw;background:var(--yellow);color:var(--navy);
+    font-family:'Paytone One',sans-serif;font-size:2vh;border-radius:1.2vh;padding:1.2vh 1.6vw;animation:nowpulse 1.4s ease-in-out infinite}
+  @keyframes nowpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
   .hero .whenmeta{font-size:2.4vh;font-weight:700;color:var(--ink);margin-top:1.2vh}
   .badgerow{display:flex;gap:1vw;flex-wrap:wrap;margin-top:3vh;align-items:center}
   .hero .avail{display:inline-flex;align-items:baseline;gap:.6vw;
@@ -128,6 +134,20 @@
   .feature .chip{background:var(--navy-2);border:1px solid var(--navy-3);border-radius:999px;
     padding:1.1vh 1.5vw;font-size:1.7vh;font-weight:700;color:var(--ink)}
   .feature .chip b{color:var(--teal-soft)}
+
+  /* reviews panel */
+  .reviews{flex:1 1 auto;display:flex;flex-direction:column;justify-content:center;
+    background:radial-gradient(120% 100% at 80% 20%, rgba(223,223,0,.10), transparent 60%);border-radius:2vh}
+  .rev-score{display:flex;align-items:center;gap:1.6vw}
+  .rev-num{font-family:'Paytone One',sans-serif;font-size:9vh;line-height:1;color:var(--yellow)}
+  .rev-meta .stars{color:var(--yellow);font-size:3.2vh;letter-spacing:.2vh}
+  .rev-meta .rev-sub{font-size:1.9vh;color:var(--ink);font-weight:700;margin-top:.6vh}
+  .rev-rank{margin-top:2.2vh;display:inline-block;align-self:flex-start;background:rgba(223,223,0,.14);
+    border:1px solid rgba(223,223,0,.5);color:var(--yellow);font-weight:800;border-radius:1vh;
+    padding:1vh 1.4vw;font-size:1.7vh;letter-spacing:.02em}
+  .rev-quotes{margin-top:2.8vh;display:flex;flex-direction:column;gap:1.6vh}
+  .rev-quotes .quote{font-family:'Paytone One',sans-serif;font-size:2.6vh;color:var(--ink);line-height:1.2}
+  .rev-quotes .quote span{display:block;font-family:'Inter',sans-serif;font-weight:700;font-size:1.6vh;color:var(--teal-soft);margin-top:.5vh}
 
   .dots{position:absolute;bottom:1.4vh;right:.4vw;display:flex;gap:.7vw;z-index:2}
   .dots i{width:1.1vh;height:1.1vh;border-radius:50%;background:var(--navy-3);transition:background .3s,width .3s}
@@ -214,7 +234,25 @@
           </div>
         </div>
 
-        <div class="dots" id="dots"><i class="on"></i><i></i><i></i></div>
+        <div class="panel" data-panel="3">
+          <div class="reviews">
+            <div class="rev-score">
+              <div class="rev-num">5.0</div>
+              <div class="rev-meta">
+                <div class="stars">★★★★★</div>
+                <div class="rev-sub">38 reviews on Tripadvisor</div>
+              </div>
+            </div>
+            <div class="rev-rank">◆ Travellers' Choice · #4 of 22 Fun &amp; Games in Shrewsbury</div>
+            <div class="rev-quotes">
+              <div class="quote">"So much fun — can't wait to go back!"<span>— Daniel</span></div>
+              <div class="quote">"Book a session now, you won't be disappointed."<span>— Kerry</span></div>
+              <div class="quote">"Absolutely epic, so much fun and great stress relief."<span>— Claire</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dots" id="dots"><i class="on"></i><i></i><i></i><i></i></div>
       </section>
     </div>
 
@@ -302,19 +340,28 @@ function render(data){
   const future=groupByTime(events.filter(e=>e.startD>now));
 
   const next=future.find(r=>r.available>0);
+  const heroEl=document.querySelector(".hero");
   const heroWhen=document.getElementById("heroWhen");
   const heroMeta=document.getElementById("heroMeta");
   const heroBadges=document.getElementById("heroBadges");
 
   if(next){
     heroWhen.textContent=fmtTime.format(next.startD);
+    const minsAway=Math.round((next.startD-now)/60000);
+    const soon = minsAway<=15;
+    heroEl.classList.toggle("soon", soon);
     heroMeta.textContent=relativeDayLabel(next.startD)+" · 1 hour exclusive hire";
-    let html='<div class="avail"><b>'+next.available+'</b> '+(next.available===1?'space':'spaces')+' open</div>';
+    let html='';
+    if(soon){
+      html+='<div class="nowflag">▶ Starts in '+minsAway+' min</div>';
+    }
+    html+='<div class="avail"><b>'+next.available+'</b> '+(next.available===1?'space':'spaces')+' open</div>';
     if(next.lanes>1){
       html+='<div class="lanebadge">◆ '+next.lanes+' lanes free</div>';
     }
     heroBadges.innerHTML=html;
   } else {
+    heroEl.classList.remove("soon");
     const nb=future[0];
     if(nb){
       heroWhen.textContent=fmtTime.format(nb.startD);
